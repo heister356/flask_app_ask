@@ -27,6 +27,18 @@ def paginated_data():
             return jsonify({'error': 'Invalid page or per_page values'}), 400
 
 
+@app.route('/add_data', methods = ['POST'])
+def add_data():
+    with open('data.json') as f:
+        data = json.load(f)
+    new_data = request.json
+    data.append(new_data)
+    with open('data.json', 'w') as f:
+        json.dump(data, f, indent=4)
+    return jsonify({'message': 'data send successfully', 'data': data})
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
