@@ -40,5 +40,18 @@ def add_data():
 
 
 
+@app.route('/fetch_data', methods = ['GET'])
+def fetch_data():
+    with open('data.json') as f:
+        data = json.load(f)
+    id = request.args.get('id')
+    for i in data:
+        if i['id'] == id:
+            return jsonify({'data': i,'message':'success'})
+    return jsonify({'message':'not found'}), 404
+            
+    
+
 if __name__ == "__main__":
     app.run(debug=True)
+    
