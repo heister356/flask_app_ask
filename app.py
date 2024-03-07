@@ -50,7 +50,41 @@ def fetch_data():
             return jsonify({'data': item,'message':'success'})
     return jsonify({'message':'not found'}), 404
             
-    
+
+
+
+
+
+@app.route('/update_name', methods=['PATCH'])
+def delete_data():
+    with open('data.json') as f:
+        data = json.load(f)
+    id = request.args.get('id')
+    name = request.args.get('name')
+    for item in data:
+        if item['id'] == id:
+            item['name'] = name
+            with open('data.json', 'w') as f:
+              json.dump(data, f, indent=4)
+              return jsonify({'message':'success'}),200
+    return jsonify({'message':'not found'}),404  
+
+
+
+# @app.route('/remove_data', methods=['DELETE'])
+# def remove_data():
+#     with open('data.json') as f:
+#         data = json.load(f)
+#     id = request.args.get('id')
+#     for item in data:
+#         print(type(item['id']), type(id))  # Debugging line
+#         if item['id'] == id:
+#             data.remove(item)
+#             with open('datas.json', 'w') as f:
+#                 json.dump(data, f, indent=4)
+#     return jsonify(data), 200
+
+   
 
 if __name__ == "__main__":
     app.run(debug=True)
