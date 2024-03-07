@@ -7,7 +7,7 @@ app = Flask(__name__)
 def data_return():
     with open('data.json','r') as f:
       data = json.load(f)
-      return jsonify({'message': 'successfully returned data','status_code':200},{'data':data})
+      return jsonify({'message': 'success', 'data':data, 'status_code':200})
     
       
   
