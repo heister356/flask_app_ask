@@ -45,9 +45,9 @@ def fetch_data():
     with open('data.json') as f:
         data = json.load(f)
     id = request.args.get('id')
-    for i in data:
-        if i['id'] == id:
-            return jsonify({'data': i,'message':'success'})
+    for item in data:
+        if item['id'] == id:
+            return jsonify({'data': item,'message':'success'})
     return jsonify({'message':'not found'}), 404
             
     
