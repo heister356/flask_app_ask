@@ -71,18 +71,17 @@ def delete_data():
 
 
 
-# @app.route('/remove_data', methods=['DELETE'])
-# def remove_data():
-#     with open('data.json') as f:
-#         data = json.load(f)
-#     id = request.args.get('id')
-#     for item in data:
-#         print(type(item['id']), type(id))  # Debugging line
-#         if item['id'] == id:
-#             data.remove(item)
-#             with open('datas.json', 'w') as f:
-#                 json.dump(data, f, indent=4)
-#     return jsonify(data), 200
+@app.route('/remove_data', methods=['DELETE'])
+def remove_data():
+    with open('data.json') as f:
+        data = json.load(f)
+    list_id = request.args.get('id')
+    for item in data:
+        if item['id'] == list_id:
+            data.remove(item)
+            with open('datas.json', 'w') as f:
+                json.dump(data, f, indent=4)
+    return jsonify(data), 200
 
    
 
