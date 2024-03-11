@@ -59,7 +59,6 @@ def update_name(user_id):
             with open('data.json', 'w') as f:
                 json.dump(data, f, indent=4)
             return jsonify({'message': 'success'}), 200
-
     return jsonify({'message': 'not found'}), 404
 
 
