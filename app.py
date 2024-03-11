@@ -61,7 +61,6 @@ def update_name(user_id):
     return jsonify({'message': 'not found'}), 404
 
 
-
 @app.route('/remove_data', methods=['DELETE'])
 def remove_data():
     data = load_data()
