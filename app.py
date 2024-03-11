@@ -47,20 +47,21 @@ def fetch_data():
             return jsonify({'data': item, 'message': 'success'})
     return jsonify({'message': 'not found'}), 404
 
+from flask import jsonify, request
 
-@app.route('/update_name', methods=['PATCH'])
-def update_name():
+@app.route('/update_name/<string:user_id>', methods=['PATCH'])
+def update_name(user_id):
     data = load_data()
-    user_id = request.args.get('id')
     name = request.args.get('name')
     for item in data:
-        if item['id'] != user_id: 
-            continue
-        item['name'] = name
-        with open('data.json', 'w') as f:
-            json.dump(data, f, indent=4)
-        return jsonify({'message': 'success'}), 200
+        if item['id'] == user_id:
+            item['name'] = name
+            with open('data.json', 'w') as f:
+                json.dump(data, f, indent=4)
+            return jsonify({'message': 'success'}), 200
+
     return jsonify({'message': 'not found'}), 404
+
 
 
 @app.route('/remove_data', methods=['DELETE'])
@@ -73,6 +74,8 @@ def remove_data():
             with open('data.json', 'w') as f:
                 json.dump(data, f, indent=4)
             return jsonify(data), 200
+        return jsonify({'error':'no matching id'}), 400
+
 
 if __name__ == "__main__":
     app.run(debug=True)
