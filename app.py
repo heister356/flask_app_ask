@@ -47,7 +47,6 @@ def fetch_data():
             return jsonify({'data': item, 'message': 'success'})
     return jsonify({'message': 'not found'}), 404
 
-from flask import jsonify, request
 
 @app.route('/update_name/<string:user_id>', methods=['PATCH'])
 def update_name(user_id):
