@@ -22,3 +22,5 @@ class Employees(db.Model):
     role_id = db.Column(db.Integer, nullable=False, default=3)
     password_hash = db.Column(db.String(200), nullable=False)
     
+    #
+    

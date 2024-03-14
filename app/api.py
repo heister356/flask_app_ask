@@ -21,7 +21,7 @@ os.environ.get("SECRET_KEY")
 #first check the email entered is existing with an account or not
        #for that we check the email in data with email that filtered from database
        #if the  mail exist the return an error code  400
-#else assign each data with new data
+#else assign each da ta with new data
 #the add the new employee to database and commit the data
 #return a success message with the status code 201 and created employee_id
 

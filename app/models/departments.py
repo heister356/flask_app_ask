@@ -10,3 +10,6 @@ class Departments(db.Model):
     updated_at = db.Column(db.TIMESTAMP, nullable=False, default=datetime.utcnow)
     created_by = db.Column(db.String, nullable=False)
     emp_id = db.Column(db.Integer, ForeignKey('employees.emp_id')) 
+    
+    
+    #
