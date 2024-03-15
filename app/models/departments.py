@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey
 from datetime import datetime
 
 from app import db
+print('deeeeeeee')
 class Departments(db.Model):
     dept_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     dept_name = db.Column(db.String, nullable=False, unique=True)

@@ -1,7 +1,4 @@
-from flask import jsonify
 from datetime import datetime
-from flask_login import UserMixin, login_user, LoginManager, login_required, current_user
-from run_server import app
 from app import db
 
 

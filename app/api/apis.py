@@ -1,10 +1,10 @@
 import re
 from flask import request, jsonify
-from flask_login import login_user,current_user, login_required
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeSerializer
-from run_server import app
+
+from app.api import bp
 from app.models.employee import Employees
 from app.models.departments import Departments
 from app import db
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 os.environ.get("SECRET_KEY")
 
-
+print('.........................')
 
 # @app.route('/signup', methods = ['POST'])
 # def signup():
@@ -25,7 +25,11 @@ os.environ.get("SECRET_KEY")
 #the add the new employee to database and commit the data
 #return a success message with the status code 201 and created employee_id
 
-@app.route('/signup', methods = ['POST'])
+@bp.route('/test')
+def test_endpoint():
+    return jsonify({'message': 'Success'})
+
+@bp.route('/signup', methods = ['POST'])
 def signup():
     data = request.json
     if not request.json.get('email') or not re.match(r"[^@]+@[^@]+\.[^@]+", request.json.get('email')):
@@ -77,7 +81,7 @@ def generate_token(emp_id, email, first_name, role_id):
     token = auth.dumps(token_data)
     return token
 
-@app.route('/login', methods=['POST'])
+@bp.route('/login', methods=['POST'])
 def login():
     if not request.json.get('email') or not re.match(r"[^@]+@[^@]+\.[^@]+", request.json.get('email')):
        return jsonify({'error':'Email must be in correct format'}), 400
@@ -103,7 +107,7 @@ def login():
 
 
 
-@app.route('/departments', methods=['POST'])
+@bp.route('/departments', methods=['POST'])
 def add_department():
     token = request.headers.get('Authorization')
     b, token = token.split()
