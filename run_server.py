@@ -1,8 +1,13 @@
-from app import db, create_app
+from app import create_app
 print("runserver")
-app=create_app()
+
+from app import models
+app = create_app()
+
 print(app)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # from app import models
+    app.run(debug=True, use_reload=False)
     
 #
