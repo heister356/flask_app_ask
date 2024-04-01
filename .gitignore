@@ -1,5 +1,7 @@
+
 migrations               #database migration folders
 .venv                    #virtual environment
-venv/
 __pycache__/
-migrations/
+
+
+
